@@ -1,4 +1,4 @@
-*After branching off for a major version release of Bitcoin Core, use this
+*After branching off for a major version release of Fujicoin Core, use this
 template to create the initial release notes draft.*
 
 *The release notes draft is a temporary file that can be added to by anyone. See
@@ -8,39 +8,39 @@ for the process.*
 *Create the draft, named* "*version* Release Notes Draft"
 *(e.g. "0.20.0 Release Notes Draft"), as a collaborative wiki in:*
 
-https://github.com/bitcoin-core/bitcoin-devwiki/wiki/
+https://github.com/fujicoin-core/fujicoin-devwiki/wiki/
 
 *Before the final release, move the notes back to this git repository.*
 
 *version* Release Notes Draft
 ===============================
 
-Bitcoin Core version *version* is now available from:
+Fujicoin Core version *version* is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-*version*/>
+  <https://fujicoincore.org/bin/fujicoin-core-*version*/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/fujicoin/fujicoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://fujicoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Fujicoin-Qt` (on Mac)
+or `fujicoind`/`fujicoin-qt` (on Linux).
 
-Upgrading directly from a version of Bitcoin Core that has reached its EOL is
+Upgrading directly from a version of Fujicoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Bitcoin Core are generally supported.
+wallet versions of Fujicoin Core are generally supported.
 
 Compatibility
 ==============
@@ -50,14 +50,14 @@ compatible with C++17. The intention is to begin using C++17 features starting
 with the 0.22.0 release. This means that a compiler that supports C++17 will be
 required to compile 0.22.0.
 
-Bitcoin Core is supported and extensively tested on operating systems
-using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Bitcoin
+Fujicoin Core is supported and extensively tested on operating systems
+using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Fujicoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them.  It is not recommended to use Bitcoin Core on
+frequently tested on them.  It is not recommended to use Fujicoin Core on
 unsupported systems.
 
-From Bitcoin Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
-longer supported. Additionally, Bitcoin Core does not yet change appearance
+From Fujicoin Core 0.20.0 onwards, macOS versions earlier than 10.12 are no
+longer supported. Additionally, Fujicoin Core does not yet change appearance
 when macOS "dark mode" is activated.
 
 The node's known peers are persisted to disk in a file called `peers.dat`. The
@@ -94,7 +94,7 @@ P2P and network changes
   `-listenonion` configuration parameter will now be created as a Tor v3 service
   instead of Tor v2. The private key that was used for Tor v2 (if any) will be
   left untouched in the `onion_private_key` file in the data directory (see
-  `-datadir`) and can be removed if not needed. Bitcoin Core will no longer
+  `-datadir`) and can be removed if not needed. Fujicoin Core will no longer
   attempt to read it. The private key for the Tor v3 service will be saved in a
   file named `onion_v3_private_key`. To use the deprecated Tor v2 service (not
   recommended), then `onion_private_key` can be copied over
@@ -132,7 +132,7 @@ Updated RPCs
   peer. `getmempoolancestors` and `getmempooldescendants` are also updated.
 
 - The `bumpfee`, `fundrawtransaction`, `sendmany`, `sendtoaddress`, and `walletcreatefundedpsbt`
-RPC commands have been updated to include two new fee estimation methods "BTC/kB" and "sat/B".
+RPC commands have been updated to include two new fee estimation methods "FJC/kB" and "sat/B".
 The target is the fee expressed explicitly in the given form. Note that use of this feature
 will trigger BIP 125 (replace-by-fee) opt-in. (#11413)
 
@@ -211,16 +211,16 @@ Changes to Wallet or GUI related settings can be found in the GUI or Wallet  sec
 Tools and Utilities
 -------------------
 
-- The `connections` field of `bitcoin-cli -getinfo` is expanded to return a JSON
+- The `connections` field of `fujicoin-cli -getinfo` is expanded to return a JSON
   object with `in`, `out` and `total` numbers of peer connections. It previously
   returned a single integer value for the total number of peer connections. (#19405)
 
-- A new `bitcoin-cli -generate` command, equivalent to RPC `generatenewaddress`
+- A new `fujicoin-cli -generate` command, equivalent to RPC `generatenewaddress`
   followed by `generatetoaddress`, can generate blocks for command line testing
   purposes. This is a client-side version of the
   former `generate` RPC. See the help for details. (#19133)
 
-- The `bitcoin-cli -getinfo` command now displays the wallet name and balance for
+- The `fujicoin-cli -getinfo` command now displays the wallet name and balance for
   each of the loaded wallets when more than one is loaded (e.g. in multiwallet
   mode) and a wallet is not specified with `-rpcwallet`. (#18594)
 
@@ -228,7 +228,7 @@ New settings
 ------------
 
 - The `startupnotify` option is used to specify a command to
-  execute when Bitcoin Core has finished with its startup
+  execute when Fujicoin Core has finished with its startup
   sequence. (#15367)
 
 Wallet
@@ -254,7 +254,7 @@ Wallet
   empty. Previously it failed. (#17219)
 
 - The `-salvagewallet` startup option has been removed. A new `salvage` command
-  has been added to the `bitcoin-wallet` tool which performs the salvage
+  has been added to the `fujicoin-wallet` tool which performs the salvage
   operations that `-salvagewallet` did. (#18918)
 
 - A new configuration flag `-maxapsfee` has been added, which sets the max
@@ -294,22 +294,22 @@ Wallet
 
 ### Automatic wallet creation removed
 
-Bitcoin Core will no longer automatically create new wallets on startup. It will
+Fujicoin Core will no longer automatically create new wallets on startup. It will
 load existing wallets specified by `-wallet` options on the command line or in
-`bitcoin.conf` or `settings.json` files. And by default it will also load a
+`fujicoin.conf` or `settings.json` files. And by default it will also load a
 top-level unnamed ("") wallet. However, if specified wallets don't exist,
-Bitcoin Core will now just log warnings instead of creating new wallets with
+Fujicoin Core will now just log warnings instead of creating new wallets with
 new keys and addresses like previous releases did.
 
 New wallets can be created through the GUI (which has a more prominent create
-wallet option), through the `bitcoin-cli createwallet` or `bitcoin-wallet
+wallet option), through the `fujicoin-cli createwallet` or `fujicoin-wallet
 create` commands, or the `createwallet` RPC. (#15454)
 
 ### Experimental Descriptor Wallets
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitcoin/bitcoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/fujicoin/fujicoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
@@ -320,9 +320,9 @@ of "mine" for scripts which is simpler and more intuitive than that used by Lega
 Descriptor Wallets also uses different semantics for watch-only things and imports.
 
 As Descriptor Wallets are a new type of wallet, their introduction does not affect existing wallets.
-Users who already have a Bitcoin Core wallet can continue to use it as they did before without
+Users who already have a Fujicoin Core wallet can continue to use it as they did before without
 any change in behavior. Newly created Legacy Wallets (which is the default type of wallet) will
-behave as they did in previous versions of Bitcoin Core.
+behave as they did in previous versions of Fujicoin Core.
 
 The differences between Descriptor Wallets and Legacy Wallets are largely limited to non user facing
 things. They are intended to behave similarly except for the import/export and watchonly functionality
@@ -338,7 +338,7 @@ In the GUI, a checkbox has been added to the Create Wallet Dialog to indicate th
 Descriptor Wallet should be created.
 
 Without those options being set, a Legacy Wallet will be created instead. Additionally the
-Default Wallet created upon first startup of Bitcoin Core will be a Legacy Wallet.
+Default Wallet created upon first startup of Fujicoin Core will be a Legacy Wallet.
 
 #### `IsMine` Semantics
 
@@ -419,7 +419,7 @@ descriptors with private keys for now as explained earlier.
 
 #### BIP 44/49/84 Support
 
-The change to using descriptors changes the default derivation paths used by Bitcoin Core
+The change to using descriptors changes the default derivation paths used by Fujicoin Core
 to adhere to BIP 44/49/84. Descriptors with different derivation paths can be imported without
 issue.
 
@@ -435,9 +435,9 @@ GUI changes
 -----------
 
 - Wallets created or loaded in the GUI will now be automatically loaded on
-  startup, so they don't need to be manually reloaded next time Bitcoin Core is
+  startup, so they don't need to be manually reloaded next time Fujicoin Core is
   started. The list of wallets to load on startup is stored in
-  `\<datadir\>/settings.json` and augments any command line or `bitcoin.conf`
+  `\<datadir\>/settings.json` and augments any command line or `fujicoin.conf`
   `-wallet=` settings that specify more wallets to load. Wallets that are
   unloaded in the GUI get removed from the settings list so they won't load
   again automatically next startup. (#19754)
@@ -483,4 +483,4 @@ Thanks to everyone who directly contributed to this release:
 
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/fujicoin/fujicoin/).
