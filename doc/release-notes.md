@@ -8,7 +8,7 @@ for the process.*
 *Create the draft, named* "*version* Release Notes Draft"
 *(e.g. "0.20.0 Release Notes Draft"), as a collaborative wiki in:*
 
-https://github.com/fujicoin-core/fujicoin-devwiki/wiki/
+https://github.com/bitcoin-core/bitcoin-devwiki/wiki/
 
 *Before the final release, move the notes back to this git repository.*
 
@@ -17,18 +17,18 @@ https://github.com/fujicoin-core/fujicoin-devwiki/wiki/
 
 Fujicoin Core version *version* is now available from:
 
-  <https://fujicoincore.org/bin/fujicoin-core-*version*/>
+  <https://bitcoincore.org/bin/bitcoin-core-*version*/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/fujicoin/fujicoin/issues>
+  <https://github.com/bitcoin/bitcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://fujicoincore.org/en/list/announcements/join/>
+  <https://bitcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -309,7 +309,7 @@ create` commands, or the `createwallet` RPC. (#15454)
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/fujicoin/fujicoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitcoin/bitcoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
@@ -483,4 +483,4 @@ Thanks to everyone who directly contributed to this release:
 
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/fujicoin/fujicoin/).
+[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
