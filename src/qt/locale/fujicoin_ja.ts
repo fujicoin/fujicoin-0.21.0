@@ -10,20 +10,20 @@
         <translation>新しいアドレスを作成</translation>
     </message>
     <message>
-        <source>New</source>
-        <translation>新規</translation>
+        <source>&amp;New</source>
+        <translation>新規(&amp;N)</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
         <translation>現在選択されているアドレスをシステムのクリップボードにコピー</translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation>コピー</translation>
+        <source>&amp;Copy</source>
+        <translation>コピー(&amp;C)</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation>閉じる</translation>
+        <source>C&amp;lose</source>
+        <translation>閉じる(&amp;C)</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
@@ -38,12 +38,12 @@
         <translation>このタブのデータをファイルにエクスポート</translation>
     </message>
     <message>
-        <source>Export</source>
-        <translation>エクスポート</translation>
+        <source>&amp;Export</source>
+        <translation>エクスポート (&amp;E)</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>削除</translation>
+        <source>&amp;Delete</source>
+        <translation>削除(&amp;D)</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
@@ -54,8 +54,8 @@
         <translation>コインを受け取りたいアドレスを選択</translation>
     </message>
     <message>
-        <source>Choose</source>
-        <translation>選択</translation>
+        <source>C&amp;hoose</source>
+        <translation>選択(&amp;C)</translation>
     </message>
     <message>
         <source>Sending addresses</source>
@@ -70,16 +70,16 @@
         <translation>これらは、あなたが知っている送信先の Fujicoin アドレスです。コインを送る前に必ず、金額と受取用アドレスを確認してください。</translation>
     </message>
     <message>
-        <source>Copy Address</source>
-        <translation>アドレスをコピー</translation>
+        <source>&amp;Copy Address</source>
+        <translation>アドレスをコピー(&amp;C)</translation>
     </message>
     <message>
-        <source>Copy Label</source>
-        <translation>ラベルをコピー</translation>
+        <source>Copy &amp;Label</source>
+        <translation>ラベルをコピー(&amp;L)</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>編集</translation>
+        <source>&amp;Edit</source>
+        <translation>編集(&amp;E)</translation>
     </message>
     <message>
         <source>Export Address List</source>
@@ -251,76 +251,76 @@
 <context>
     <name>FujicoinGUI</name>
     <message>
-        <source>Sign message...</source>
-        <translation>メッセージの署名...</translation>
+        <source>Sign &amp;message...</source>
+        <translation>メッセージの署名...(&amp;m)</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
         <translation>ネットワークに同期中...</translation>
     </message>
     <message>
-        <source>Overview</source>
-        <translation>概要</translation>
+        <source>&amp;Overview</source>
+        <translation>概要(&amp;O)</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
         <translation>ウォレットの概要を見る</translation>
     </message>
     <message>
-        <source>Transactions</source>
-        <translation>取引</translation>
+        <source>&amp;Transactions</source>
+        <translation>取引(&amp;T)</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
         <translation>取引履歴を見る</translation>
     </message>
     <message>
-        <source>Exit</source>
-        <translation>終了</translation>
+        <source>E&amp;xit</source>
+        <translation>終了(&amp;E)</translation>
     </message>
     <message>
         <source>Quit application</source>
         <translation>アプリケーションを終了する</translation>
     </message>
     <message>
-        <source>About %1</source>
-        <translation>%1 について</translation>
+        <source>&amp;About %1</source>
+        <translation>%1 について(&amp;A)</translation>
     </message>
     <message>
         <source>Show information about %1</source>
         <translation>%1 の情報を表示する</translation>
     </message>
     <message>
-        <source>About Qt</source>
-        <translation>Qt について</translation>
+        <source>About &amp;Qt</source>
+        <translation>Qt について(&amp;Q)</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
         <translation>Qt の情報を表示する</translation>
     </message>
     <message>
-        <source>Options...</source>
-        <translation>オプション...</translation>
+        <source>&amp;Options...</source>
+        <translation>オプション...(&amp;O)</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
         <translation>%1 の設定を変更する</translation>
     </message>
     <message>
-        <source>Encrypt Wallet...</source>
-        <translation>ウォレットの暗号化...</translation>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>ウォレットの暗号化(&amp;E)...</translation>
     </message>
     <message>
-        <source>Backup Wallet...</source>
-        <translation>ウォレットのバックアップ...</translation>
+        <source>&amp;Backup Wallet...</source>
+        <translation>ウォレットのバックアップ(&amp;B)...</translation>
     </message>
     <message>
-        <source>Change Passphrase...</source>
-        <translation>パスフレーズの変更...</translation>
+        <source>&amp;Change Passphrase...</source>
+        <translation>パスフレーズの変更(&amp;C)...</translation>
     </message>
     <message>
-        <source>Open URI...</source>
-        <translation>URI を開く...</translation>
+        <source>Open &amp;URI...</source>
+        <translation>URI を開く(&amp;U)...</translation>
     </message>
     <message>
         <source>Create Wallet...</source>
@@ -371,20 +371,20 @@
         <translation>ウォレット暗号化用パスフレーズを変更する</translation>
     </message>
     <message>
-        <source>Verify message...</source>
-        <translation>メッセージの検証...</translation>
+        <source>&amp;Verify message...</source>
+        <translation>メッセージの検証(&amp;V)...</translation>
     </message>
     <message>
-        <source>Send</source>
-        <translation>送金</translation>
+        <source>&amp;Send</source>
+        <translation>送金(&amp;S)</translation>
     </message>
     <message>
-        <source>Receive</source>
-        <translation>受取</translation>
+        <source>&amp;Receive</source>
+        <translation>受取(&amp;R)</translation>
     </message>
     <message>
-        <source>Show / Hide</source>
-        <translation>表示 / 非表示</translation>
+        <source>&amp;Show / Hide</source>
+        <translation>表示 / 非表示(&amp;S)</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
@@ -403,16 +403,16 @@
         <translation>メッセージを検証して、指定された Fujicoin アドレスで署名されたことを確認する</translation>
     </message>
     <message>
-        <source>File</source>
-        <translation>ファイル</translation>
+        <source>&amp;File</source>
+        <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
-        <source>Settings</source>
-        <translation>設定</translation>
+        <source>&amp;Settings</source>
+        <translation>設定(&amp;S)</translation>
     </message>
     <message>
-        <source>Help</source>
-        <translation>ヘルプ</translation>
+        <source>&amp;Help</source>
+        <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>
@@ -431,8 +431,8 @@
         <translation>受け取ったことがあるアドレスとラベルの一覧を表示する</translation>
     </message>
     <message>
-        <source>Command-line options</source>
-        <translation>コマンドラインオプション</translation>
+        <source>&amp;Command-line options</source>
+        <translation>コマンドラインオプション(&amp;C)</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Fujicoin network</source>
@@ -495,12 +495,12 @@
         <translation>ノードのデバッグ・診断コンソールを開く</translation>
     </message>
     <message>
-        <source>Sending addresses</source>
-        <translation>送金先アドレス一覧...</translation>
+        <source>&amp;Sending addresses</source>
+        <translation>送金先アドレス一覧(&amp;S)...</translation>
     </message>
     <message>
-        <source>Receiving addresses</source>
-        <translation>受取用アドレス一覧...</translation>
+        <source>&amp;Receiving addresses</source>
+        <translation>受取用アドレス一覧(&amp;R)...</translation>
     </message>
     <message>
         <source>Open a fujicoin: URI</source>
@@ -543,8 +543,8 @@
         <translation>ウォレットは利用できません</translation>
     </message>
     <message>
-        <source>Window</source>
-        <translation>ウィンドウ </translation>
+        <source>&amp;Window</source>
+        <translation>ウィンドウ (&amp;W)</translation>
     </message>
     <message>
         <source>Minimize</source>
@@ -859,8 +859,8 @@
         <translation>アドレスを編集</translation>
     </message>
     <message>
-        <source>Label</source>
-        <translation>ラベル</translation>
+        <source>&amp;Label</source>
+        <translation>ラベル(&amp;L)</translation>
     </message>
     <message>
         <source>The label associated with this address list entry</source>
@@ -871,8 +871,8 @@
         <translation>このアドレス帳項目のアドレス。アドレスは送金先アドレスの場合のみ編集することができます。</translation>
     </message>
     <message>
-        <source>Address</source>
-        <translation>アドレス</translation>
+        <source>&amp;Address</source>
+        <translation>アドレス(&amp;A)</translation>
     </message>
     <message>
         <source>New sending address</source>
@@ -1124,24 +1124,24 @@
         <translation>設定</translation>
     </message>
     <message>
-        <source>Main</source>
-        <translation>メイン</translation>
+        <source>&amp;Main</source>
+        <translation>メイン(&amp;M)</translation>
     </message>
     <message>
         <source>Automatically start %1 after logging in to the system.</source>
         <translation>システムにログインした際、自動的に %1 を起動する。</translation>
     </message>
     <message>
-        <source>Start %1 on system login</source>
-        <translation>システムのログイン時に %1 を起動</translation>
+        <source>&amp;Start %1 on system login</source>
+        <translation>システムのログイン時に %1 を起動(&amp;S)</translation>
     </message>
     <message>
-        <source>Size of database cache</source>
-        <translation>データベースキャッシュのサイズ</translation>
+        <source>Size of &amp;database cache</source>
+        <translation>データベースキャッシュのサイズ(&amp;D)</translation>
     </message>
     <message>
-        <source>Number of script verification threads</source>
-        <translation>スクリプト検証用スレッド数</translation>
+        <source>Number of script &amp;verification threads</source>
+        <translation>スクリプト検証用スレッド数(&amp;V)</translation>
     </message>
     <message>
         <source>IP address of the proxy (e.g. IPv4: 127.0.0.1 / IPv6: ::1)</source>
@@ -1156,8 +1156,8 @@
         <translation>システムトレイのアイコンを隠す</translation>
     </message>
     <message>
-        <source>Hide tray icon</source>
-        <translation>トレイアイコンを隠す</translation>
+        <source>&amp;Hide tray icon</source>
+        <translation>トレイアイコンを隠す(&amp;H)</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
@@ -1180,20 +1180,20 @@
         <translation>全ての設定を初期値に戻す。</translation>
     </message>
     <message>
-        <source>Reset Options</source>
-        <translation>オプションをリセット</translation>
+        <source>&amp;Reset Options</source>
+        <translation>オプションをリセット(&amp;R)</translation>
     </message>
     <message>
-        <source>Network</source>
-        <translation>ネットワーク</translation>
+        <source>&amp;Network</source>
+        <translation>ネットワーク(&amp;N)</translation>
     </message>
     <message>
         <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
         <translation>いくつかの高度な機能は無効になりますが、全てのブロックが完全に検証されることは変わりません。この設定を元に戻すには、ブロックチェーン全体を再ダウンロードする必要があります。実際のディスク使用量は若干多くなる場合があります。</translation>
     </message>
     <message>
-        <source>Prune block storage to</source>
-        <translation>ブロックの保存容量を次の値までに剪定する:</translation>
+        <source>Prune &amp;block storage to</source>
+        <translation>ブロックの保存容量を次の値までに剪定する(&amp;amp;B):</translation>
     </message>
     <message>
         <source>GB</source>
@@ -1212,56 +1212,56 @@
         <translation>(0 = 自動、0以上 = 指定した数のコアを解放する)</translation>
     </message>
     <message>
-        <source>Wallet</source>
-        <translation>ウォレット</translation>
+        <source>W&amp;allet</source>
+        <translation>ウォレット(&amp;A)</translation>
     </message>
     <message>
         <source>Expert</source>
         <translation>上級者向け機能</translation>
     </message>
     <message>
-        <source>Enable coin control features</source>
-        <translation>コインコントロール機能を有効化する</translation>
+        <source>Enable coin &amp;control features</source>
+        <translation>コインコントロール機能を有効化する(&amp;C)</translation>
     </message>
     <message>
         <source>If you disable the spending of unconfirmed change, the change from a transaction cannot be used until that transaction has at least one confirmation. This also affects how your balance is computed.</source>
         <translation>未承認のお釣りを使用しない場合、取引が最低1回検証されるまではその取引のお釣りは利用できなくなります。これは残高の計算方法にも影響します。</translation>
     </message>
     <message>
-        <source>Spend unconfirmed change</source>
-        <translation>未承認のお釣りを使用する</translation>
+        <source>&amp;Spend unconfirmed change</source>
+        <translation>未承認のお釣りを使用する(&amp;S)</translation>
     </message>
     <message>
         <source>Automatically open the Fujicoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>自動的にルーター上の Fujicoin クライアントのポートを開放します。あなたのルーターが UPnP に対応していて、それが有効になっている場合のみ動作します。</translation>
     </message>
     <message>
-        <source>Map port using UPnP</source>
-        <translation>UPnP を使ってポートを割り当てる</translation>
+        <source>Map port using &amp;UPnP</source>
+        <translation>UPnP を使ってポートを割り当てる(&amp;U)</translation>
     </message>
     <message>
         <source>Accept connections from outside.</source>
         <translation>外部からの接続を許可する。</translation>
     </message>
     <message>
-        <source>Allow incoming connections</source>
-        <translation>外部からの接続を許可する</translation>
+        <source>Allow incomin&amp;g connections</source>
+        <translation>外部からの接続を許可する(&amp;G)</translation>
     </message>
     <message>
         <source>Connect to the Fujicoin network through a SOCKS5 proxy.</source>
         <translation>SOCKS5 プロキシ経由で Fujicoin ネットワークに接続する。</translation>
     </message>
     <message>
-        <source>Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>SOCKS5 プロキシ経由で接続する（デフォルトプロキシ）:</translation>
+        <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
+        <translation>SOCKS5 プロキシ経由で接続する（デフォルトプロキシ）(&amp;C):</translation>
     </message>
     <message>
-        <source>Proxy IP:</source>
-        <translation>プロキシ IP:</translation>
+        <source>Proxy &amp;IP:</source>
+        <translation>プロキシ IP(&amp;I):</translation>
     </message>
     <message>
-        <source>Port:</source>
-        <translation>ポート:</translation>
+        <source>&amp;Port:</source>
+        <translation>ポート(&amp;P):</translation>
     </message>
     <message>
         <source>Port of the proxy (e.g. 9050)</source>
@@ -1284,36 +1284,36 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Window</source>
-        <translation>ウインドウ</translation>
+        <source>&amp;Window</source>
+        <translation>ウインドウ(&amp;W)</translation>
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
         <translation>ウインドウを最小化したあとトレイ アイコンのみ表示する。</translation>
     </message>
     <message>
-        <source>Minimize to the tray instead of the taskbar</source>
-        <translation>タスクバーではなくトレイに最小化</translation>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>タスクバーではなくトレイに最小化(&amp;M)</translation>
     </message>
     <message>
-        <source>Minimize on close</source>
-        <translation>閉じるときに最小化</translation>
+        <source>M&amp;inimize on close</source>
+        <translation>閉じるときに最小化(&amp;I)</translation>
     </message>
     <message>
-        <source>Display</source>
-        <translation>表示</translation>
+        <source>&amp;Display</source>
+        <translation>表示(&amp;D)</translation>
     </message>
     <message>
-        <source>User Interface language:</source>
-        <translation>ユーザインターフェースの言語:</translation>
+        <source>User Interface &amp;language:</source>
+        <translation>ユーザインターフェースの言語(&amp;L):</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
         <translation>ユーザーインターフェイスの言語を設定できます。設定を反映するには %1 の再起動が必要です。</translation>
     </message>
     <message>
-        <source>Unit to show amounts in:</source>
-        <translation>金額の表示単位:</translation>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>金額の表示単位(&amp;U):</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
@@ -1324,20 +1324,20 @@
         <translation>コインコントロール機能を表示するかどうか。</translation>
     </message>
     <message>
-        <source>Third party transaction URLs</source>
-        <translation>サードパーティの取引確認URL</translation>
+        <source>&amp;Third party transaction URLs</source>
+        <translation>サードパーティの取引確認URL(&amp;T)</translation>
     </message>
     <message>
         <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
         <translation>このダイアログで指定したオプションは、コマンドラインや設定ファイルの内容でオーバーライドされます:</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation>OK</translation>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>キャンセル</translation>
+        <source>&amp;Cancel</source>
+        <translation>キャンセル(&amp;C)</translation>
     </message>
     <message>
         <source>default</source>
@@ -1674,12 +1674,12 @@
 <context>
     <name>QRImageWidget</name>
     <message>
-        <source>Save Image...</source>
-        <translation>画像を保存</translation>
+        <source>&amp;Save Image...</source>
+        <translation>画像を保存(&amp;S)</translation>
     </message>
     <message>
-        <source>Copy Image</source>
-        <translation>画像をコピー</translation>
+        <source>&amp;Copy Image</source>
+        <translation>画像をコピー(&amp;C)</translation>
     </message>
     <message>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
@@ -1713,8 +1713,8 @@
         <translation>クライアントのバージョン</translation>
     </message>
     <message>
-        <source>Information</source>
-        <translation>情報</translation>
+        <source>&amp;Information</source>
+        <translation>情報(&amp;I)</translation>
     </message>
     <message>
         <source>General</source>
@@ -1781,8 +1781,8 @@
         <translation>(なし)</translation>
     </message>
     <message>
-        <source>Reset</source>
-        <translation>リセット</translation>
+        <source>&amp;Reset</source>
+        <translation>リセット(&amp;R)</translation>
     </message>
     <message>
         <source>Received</source>
@@ -1793,8 +1793,8 @@
         <translation>送信</translation>
     </message>
     <message>
-        <source>Peers</source>
-        <translation>ピア</translation>
+        <source>&amp;Peers</source>
+        <translation>ピア(&amp;P)</translation>
     </message>
     <message>
         <source>Banned peers</source>
@@ -1893,16 +1893,16 @@
         <translation>最終ブロックの日時</translation>
     </message>
     <message>
-        <source>Open</source>
-        <translation>開く</translation>
+        <source>&amp;Open</source>
+        <translation>開く(&amp;O)</translation>
     </message>
     <message>
-        <source>Console</source>
-        <translation>コンソール</translation>
+        <source>&amp;Console</source>
+        <translation>コンソール(&amp;C)</translation>
     </message>
     <message>
-        <source>Network Traffic</source>
-        <translation>ネットワークトラフィック</translation>
+        <source>&amp;Network Traffic</source>
+        <translation>ネットワークトラフィック(&amp;N)</translation>
     </message>
     <message>
         <source>Totals</source>
@@ -1925,32 +1925,32 @@
         <translation>コンソールをクリア</translation>
     </message>
     <message>
-        <source>1 hour</source>
-        <translation>1時間</translation>
+        <source>1 &amp;hour</source>
+        <translation>1時間(&amp;H)</translation>
     </message>
     <message>
-        <source>1 day</source>
-        <translation>1日</translation>
+        <source>1 &amp;day</source>
+        <translation>1日(&amp;D)</translation>
     </message>
     <message>
-        <source>1 week</source>
-        <translation>1週間</translation>
+        <source>1 &amp;week</source>
+        <translation>1週間(&amp;W)</translation>
     </message>
     <message>
-        <source>1 year</source>
-        <translation>1年</translation>
+        <source>1 &amp;year</source>
+        <translation>1年(&amp;Y)</translation>
     </message>
     <message>
-        <source>Disconnect</source>
-        <translation>切断</translation>
+        <source>&amp;Disconnect</source>
+        <translation>切断(&amp;D)</translation>
     </message>
     <message>
         <source>Ban for</source>
         <translation>Banする:</translation>
     </message>
     <message>
-        <source>Unban</source>
-        <translation>Banを解除する</translation>
+        <source>&amp;Unban</source>
+        <translation>Banを解除する(&amp;U)</translation>
     </message>
     <message>
         <source>Welcome to the %1 RPC console.</source>
@@ -2012,16 +2012,16 @@
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
-        <source>Amount:</source>
-        <translation>金額:</translation>
+        <source>&amp;Amount:</source>
+        <translation>金額:(&amp;A)</translation>
     </message>
     <message>
-        <source>Label:</source>
-        <translation>ラベル:</translation>
+        <source>&amp;Label:</source>
+        <translation>ラベル(&amp;L):</translation>
     </message>
     <message>
-        <source>Message:</source>
-        <translation>メッセージ :</translation>
+        <source>&amp;Message:</source>
+        <translation>メッセージ (&amp;M):</translation>
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Fujicoin network.</source>
@@ -2048,7 +2048,7 @@
         <translation>支払いリクエストに任意で添付できるメッセージで、送り主に表示されます。</translation>
     </message>
     <message>
-        <source>Create new receiving address</source>
+        <source>&amp;Create new receiving address</source>
         <translation>新しい受取用アドレスを作成</translation>
     </message>
     <message>
@@ -2131,16 +2131,16 @@
         <translation>ウォレット:</translation>
     </message>
     <message>
-        <source>Copy URI</source>
-        <translation>URIをコピーする</translation>
+        <source>Copy &amp;URI</source>
+        <translation>URIをコピーする(&amp;U)</translation>
     </message>
     <message>
-        <source>Copy Address</source>
-        <translation>アドレスをコピー</translation>
+        <source>Copy &amp;Address</source>
+        <translation>アドレスをコピー(&amp;A)</translation>
     </message>
     <message>
-        <source>Save Image...</source>
-        <translation>画像を保存...</translation>
+        <source>&amp;Save Image...</source>
+        <translation>画像を保存(&amp;S)...</translation>
     </message>
     <message>
         <source>Request payment to %1</source>
@@ -2285,8 +2285,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>一度に複数の送金先に送る</translation>
     </message>
     <message>
-        <source>Add Recipient</source>
-        <translation>送金先を追加</translation>
+        <source>Add &amp;Recipient</source>
+        <translation>送金先を追加(&amp;R)</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -2321,8 +2321,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Replace-By-Fee(手数料の上乗せ: BIP-125)機能を有効にすることで、トランザクション送信後でも手数料を上乗せすることができます。この機能を利用しない場合、予め手数料を多めに見積もっておかないと取引が遅れる可能性があります。</translation>
     </message>
     <message>
-        <source>Clear All</source>
-        <translation>全てクリア</translation>
+        <source>Clear &amp;All</source>
+        <translation>全てクリア(&amp;A)</translation>
     </message>
     <message>
         <source>Balance:</source>
@@ -2333,8 +2333,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>送金内容を確認</translation>
     </message>
     <message>
-        <source>Send</source>
-        <translation>送金</translation>
+        <source>S&amp;end</source>
+        <translation>送金(&amp;E)</translation>
     </message>
     <message>
         <source>Copy quantity</source>
@@ -2369,7 +2369,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>%1 (%2 ブロック)</translation>
     </message>
     <message>
-        <source>Create Unsigned</source>
+        <source>Cr&amp;eate Unsigned</source>
         <translation>未署名で作成</translation>
     </message>
     <message>
@@ -2512,16 +2512,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 <context>
     <name>SendCoinsEntry</name>
     <message>
-        <source>Amount:</source>
-        <translation>金額:</translation>
+        <source>A&amp;mount:</source>
+        <translation>金額(&amp;A):</translation>
     </message>
     <message>
-        <source>Pay To:</source>
-        <translation>送金先:</translation>
+        <source>Pay &amp;To:</source>
+        <translation>送金先(&amp;T):</translation>
     </message>
     <message>
-        <source>Label:</source>
-        <translation>ラベル:</translation>
+        <source>&amp;Label:</source>
+        <translation>ラベル(&amp;L):</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2556,8 +2556,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>手数料は送金する金額から差し引かれます。送金先には金額欄で指定した額よりも少ない Fujicoin が送られます。送金先が複数ある場合は、手数料は均等に分けられます。</translation>
     </message>
     <message>
-        <source>Subtract fee from amount</source>
-        <translation>送金額から手数料を差し引く</translation>
+        <source>S&amp;ubtract fee from amount</source>
+        <translation>送金額から手数料を差し引く(&amp;U)</translation>
     </message>
     <message>
         <source>Use available balance</source>
@@ -2610,8 +2610,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>署名 - メッセージの署名・検証</translation>
     </message>
     <message>
-        <source>Sign Message</source>
-        <translation>メッセージの署名</translation>
+        <source>&amp;Sign Message</source>
+        <translation>メッセージの署名(&amp;S)</translation>
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive fujicoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
@@ -2654,20 +2654,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>メッセージに署名してこの Fujicoin アドレスを所有していることを証明</translation>
     </message>
     <message>
-        <source>Sign Message</source>
-        <translation>メッセージを署名</translation>
+        <source>Sign &amp;Message</source>
+        <translation>メッセージを署名(&amp;M)</translation>
     </message>
     <message>
         <source>Reset all sign message fields</source>
         <translation>入力欄の内容を全て消去</translation>
     </message>
     <message>
-        <source>Clear All</source>
-        <translation>全てクリア</translation>
+        <source>Clear &amp;All</source>
+        <translation>全てクリア(&amp;A)</translation>
     </message>
     <message>
-        <source>Verify Message</source>
-        <translation>メッセージの検証</translation>
+        <source>&amp;Verify Message</source>
+        <translation>メッセージの検証(&amp;V)</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
@@ -2690,8 +2690,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>メッセージを検証して指定された Fujicoin アドレスで署名されたことを確認</translation>
     </message>
     <message>
-        <source>Verify Message</source>
-        <translation>メッセージを検証</translation>
+        <source>Verify &amp;Message</source>
+        <translation>メッセージを検証(&amp;M)</translation>
     </message>
     <message>
         <source>Reset all verify message fields</source>
@@ -3308,8 +3308,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
 <context>
     <name>WalletView</name>
     <message>
-        <source>Export</source>
-        <translation>エクスポート</translation>
+        <source>&amp;Export</source>
+        <translation>エクスポート(&amp;E)</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
