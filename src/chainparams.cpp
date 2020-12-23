@@ -280,7 +280,17 @@ public:
         vSeeds.clear();
 
         if (!args.IsArgSet("-signetchallenge")) {
-            throw std::runtime_error(strprintf("%s: -signetchallenge is mandatory for signet networks", __func__));
+            bin = ParseHex(signet_challenge[0]);
+
+            consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000100010");
+            consensus.defaultAssumeValid = uint256S("3101fe06ff57ecec2fbb8d70327e6fa4faaeff18cacda8f26e46395c6c94b4f1"); // 0
+            m_assumed_blockchain_size = 1;
+            m_assumed_chain_state_size = 0;
+            chainTxData = ChainTxData{
+                // Data from RPC: getchaintxstats 4096 0000002a1de0f46379358c1fd09906f7ac59adf3712323ed90eb59e4c183c020
+                /* nTime    */ 0,
+                /* nTxCount */ 0,
+                /* dTxRate  */ 0,
             };
         } else {
             const auto signet_challenge = args.GetArgs("-signetchallenge");
@@ -344,10 +354,10 @@ public:
 
         genesis = CreateGenesisBlock(1609459200, 3578955, 0x1e0ffff0, 1, 1 * COIN); //(nTime, nNonce, nBits, nVersion, genesisReward)
         consensus.hashGenesisBlock = genesis.GetHash();
-        LogPrintf("SigNet: consensus.hashGenesisBlock = %s\n", consensus.hashGenesisBlock);
-        LogPrintf("SigNet: genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot);
-        assert(consensus.hashGenesisBlock == uint256S(""));
-        assert(genesis.hashMerkleRoot == uint256S(""));
+        //printf("SigNet: consensus.hashGenesisBlock = %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        //printf("SigNet: genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        assert(consensus.hashGenesisBlock == uint256S("3101fe06ff57ecec2fbb8d70327e6fa4faaeff18cacda8f26e46395c6c94b4f1"));
+        assert(genesis.hashMerkleRoot == uint256S("f951a273c3055d1bb36b4291e7f9edd491c2d435bd5737318ef8a643cab84b61"));
 
         vFixedSeeds.clear();
 
