@@ -706,14 +706,14 @@ static void FindNextBlocksToDownload(CNode* pto, unsigned int count, std::vector
     
     if (::ChainstateActive().IsStartUp > 0 && state->pindexBestKnownBlock->nHeight - ::ChainActive().Height() <= 1 && ::ChainActive().Height() - state->pindexLastCommonBlock->nHeight <= 1){
         ::ChainstateActive().IsStartUp -= 1;
-        LogPrintf("::Set ChainstateActive().IsStartUp = %s\n", ::ChainstateActive().IsStartUp);
+        LogPrintf("::Set ChainstateActive().IsStartUp=%d\n", ::ChainstateActive().IsStartUp);
     }
 
     // Introduce settlement to Fujicoin's block chain.
     // Payment will be settled with 6 confirmations.
     if(::ChainstateActive().IsStartUp < 1 && ::ChainActive().Height() - state->pindexLastCommonBlock->nHeight >= 6){
+        LogPrintf("::Peer disconnected: Over Height=%d peer=%d\n", ::ChainActive().Height() - state->pindexLastCommonBlock->nHeight, pto->GetId());
         pto->fDisconnect = true;
-        LogPrintf("::Peer disconnected: Over Height = %s\n", ::ChainActive().Height() - state->pindexLastCommonBlock->nHeight);
         return;
     }
     
