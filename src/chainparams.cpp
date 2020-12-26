@@ -352,11 +352,9 @@ public:
         nDefaultPort = 33777;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1609459200, 3578955, 0x1e0ffff0, 1, 1 * COIN); //(nTime, nNonce, nBits, nVersion, genesisReward)
+        genesis = CreateGenesisBlock(1609459200, 3843174, 0x1e0ffff0, 1, 1 * COIN); //(nTime, nNonce, nBits, nVersion, genesisReward)
         consensus.hashGenesisBlock = genesis.GetHash();
-        //printf("SigNet: consensus.hashGenesisBlock = %s\n", consensus.hashGenesisBlock.ToString().c_str());
-        //printf("SigNet: genesis.hashMerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        assert(consensus.hashGenesisBlock == uint256S("3101fe06ff57ecec2fbb8d70327e6fa4faaeff18cacda8f26e46395c6c94b4f1"));
+        assert(consensus.hashGenesisBlock == uint256S("46e7e81bb7ab789c25594da86698fa65fbc5387d52d961a1235bcaf9d8e60f59"));
         assert(genesis.hashMerkleRoot == uint256S("f951a273c3055d1bb36b4291e7f9edd491c2d435bd5737318ef8a643cab84b61"));
 
         vFixedSeeds.clear();
@@ -422,9 +420,9 @@ public:
 
         UpdateActivationParametersFromArgs(args);
 
-        genesis = CreateGenesisBlock(1402725600, 3578955, 0x1e0ffff0, 1, 1 * COIN);
+        genesis = CreateGenesisBlock(1402725600, 10, 0x207fffff, 1, 1 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x96bd214d68bcbfe9c786c4da26cf71fb6bbb6f24032065bdf2f4cd2b003d9c72"));
+        assert(consensus.hashGenesisBlock == uint256S("b875cf0a8c9697c338d22bcb5c854497bcf34ff5ea31ee2150312aa4dcd25510"));
         assert(genesis.hashMerkleRoot == uint256S("0xf951a273c3055d1bb36b4291e7f9edd491c2d435bd5737318ef8a643cab84b61"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
