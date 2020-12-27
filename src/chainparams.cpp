@@ -283,7 +283,7 @@ public:
             bin = ParseHex("512103ad5e0edad18cb1f0fc0d28a3d4f1f3e445640337489abb10404f2d1e086be430210359ef5021964fe22d6f8e05b2463c9540ce96883fe3b278760f048f5189f2e6c452ae");
 
             consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000100010");
-            consensus.defaultAssumeValid = uint256S("3101fe06ff57ecec2fbb8d70327e6fa4faaeff18cacda8f26e46395c6c94b4f1"); // 0
+            consensus.defaultAssumeValid = uint256S("279c02d5b21a3bfa24d01024b85472361e4573e3e2a2c3b66694ef86c13b0c5e"); // 0
             m_assumed_blockchain_size = 1;
             m_assumed_chain_state_size = 0;
             chainTxData = ChainTxData{
@@ -352,9 +352,9 @@ public:
         nDefaultPort = 33777;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1609459200, 3843174, 0x1e0ffff0, 1, 1 * COIN); //(nTime, nNonce, nBits, nVersion, genesisReward)
+        genesis = CreateGenesisBlock(1608811200, 904816, 0x1e0ffff0, 1, 1 * COIN); //(nTime, nNonce, nBits, nVersion, genesisReward)
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("46e7e81bb7ab789c25594da86698fa65fbc5387d52d961a1235bcaf9d8e60f59"));
+        assert(consensus.hashGenesisBlock == uint256S("279c02d5b21a3bfa24d01024b85472361e4573e3e2a2c3b66694ef86c13b0c5e"));
         assert(genesis.hashMerkleRoot == uint256S("f951a273c3055d1bb36b4291e7f9edd491c2d435bd5737318ef8a643cab84b61"));
 
         vFixedSeeds.clear();
@@ -385,11 +385,11 @@ public:
         consensus.signet_challenge.clear();
         consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP16Exception = uint256(); // always enforce P2SH BIP16 on regtest
-        consensus.BIP34Height = 1800000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
-        consensus.BIP34Hash = uint256S("0x0f5353f137b5e3f0e45d5643843ba452ac84bb6470ba608eae71994f0be87412");
-        consensus.BIP65Height = 1800000; // BIP65 activated on regtest (Used in rpc activation tests)
-        consensus.BIP66Height = 1800000; // BIP66 activated on regtest (Used in rpc activation tests)
-        consensus.CSVHeight = 432; // CSV activated on regtest (Used in rpc activation tests)
+        consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
+        consensus.BIP34Hash = uint256S("b875cf0a8c9697c338d22bcb5c854497bcf34ff5ea31ee2150312aa4dcd25510");
+        consensus.BIP65Height = 0; // BIP65 activated on regtest (Used in rpc activation tests)
+        consensus.BIP66Height = 0; // BIP66 activated on regtest (Used in rpc activation tests)
+        consensus.CSVHeight = 0; // CSV activated on regtest (Used in rpc activation tests)
         consensus.SegwitHeight = 0; // SEGWIT is always activated on regtest unless overridden
         consensus.MinBIP9WarningHeight = 0;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -435,7 +435,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0x96bd214d68bcbfe9c786c4da26cf71fb6bbb6f24032065bdf2f4cd2b003d9c72")},
+                {0, uint256S("b875cf0a8c9697c338d22bcb5c854497bcf34ff5ea31ee2150312aa4dcd25510")},
             }
         };
 
