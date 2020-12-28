@@ -91,8 +91,8 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = 1230767999; // December 31, 2008
 
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000048095ae8a7742");
-        consensus.defaultAssumeValid = uint256S("0x1208f74bd421900d98a2485b0bf4556a4c8d6eea0759025d1394aaab0bba6809"); // 3300000
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000002e2ec9c177c937e"); // 3400000
+        consensus.defaultAssumeValid = uint256S("0x85e7c468f6d4bd4f7e24d7683a69e1db071dcabf5a4041c705f7c8f3a1ecbffa"); // 3400000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -172,6 +172,7 @@ public:
                 {3100000, uint256S("0x82a7f3952af357a6b311577e8274469839c3b4b2e5992f08f31c8e06cb20b8e5")},
                 {3200000, uint256S("0xef76f3656574c1645ef8e2d930b5ac4091f3c55f29c7c2eda641b4ad43b9f2be")},
                 {3300000, uint256S("0x1208f74bd421900d98a2485b0bf4556a4c8d6eea0759025d1394aaab0bba6809")},
+                {3400000, uint256S("0x85e7c468f6d4bd4f7e24d7683a69e1db071dcabf5a4041c705f7c8f3a1ecbffa")},
             }
         };
 
