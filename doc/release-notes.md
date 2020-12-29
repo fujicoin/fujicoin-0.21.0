@@ -1,34 +1,16 @@
-*After branching off for a major version release of Fujicoin Core, use this
-template to create the initial release notes draft.*
-
-*The release notes draft is a temporary file that can be added to by anyone. See
-[/doc/developer-notes.md#release-notes](/doc/developer-notes.md#release-notes)
-for the process.*
-
-*Create the draft, named* "*version* Release Notes Draft"
-*(e.g. "0.20.0 Release Notes Draft"), as a collaborative wiki in:*
-
-https://github.com/bitcoin-core/bitcoin-devwiki/wiki/
-
-*Before the final release, move the notes back to this git repository.*
-
-*version* Release Notes Draft
+v0.21.0 Release Notes
 ===============================
 
-Fujicoin Core version *version* is now available from:
+Fujicoin Core version v0.21.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-*version*/>
+  <https://www.fujicoin.org/downloads.php>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
-
-To receive security and update notifications, please subscribe to:
-
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://github.com/fujicoin/fujicoin/issues>
 
 How to Upgrade
 ==============
@@ -44,11 +26,6 @@ wallet versions of Fujicoin Core are generally supported.
 
 Compatibility
 ==============
-
-During this release cycle, work has been done to ensure that the codebase is fully
-compatible with C++17. The intention is to begin using C++17 features starting
-with the 0.22.0 release. This means that a compiler that supports C++17 will be
-required to compile 0.22.0.
 
 Fujicoin Core is supported and extensively tested on operating systems
 using the Linux kernel, macOS 10.12+, and Windows 7 and newer.  Fujicoin
@@ -66,7 +43,7 @@ accommodate the storage of Tor v3 and other BIP155 addresses. This means that if
 the file is modified by 0.21.0 or newer then older versions will not be able to
 read it. Those old versions, in the event of a downgrade, will log an error
 message "Incorrect keysize in addrman deserialization" and will continue normal
-operation as if the file was missing, creating a new empty one. (#19954)
+operation as if the file was missing, creating a new empty one. (#19954, #20284)
 
 Notable changes
 ===============
@@ -104,8 +81,11 @@ P2P and network changes
 Updated RPCs
 ------------
 
+- The `getpeerinfo` RPC has a new `network` field that provides the type of
+  network ("ipv4", "ipv6", or "onion") that the peer connected through. (#20002)
+
 - The `getpeerinfo` RPC now has additional `last_block` and `last_transaction`
-  fields that return the UNIX epoch time of the last block and the last valid
+  fields that return the UNIX epoch time of the last block and the last *valid*
   transaction received from each peer. (#19731)
 
 - `getnetworkinfo` now returns two new fields, `connections_in` and
@@ -131,17 +111,6 @@ Updated RPCs
   whether initial broadcast of the transaction has been acknowledged by a
   peer. `getmempoolancestors` and `getmempooldescendants` are also updated.
 
-- The `bumpfee`, `fundrawtransaction`, `sendmany`, `sendtoaddress`, and `walletcreatefundedpsbt`
-RPC commands have been updated to include two new fee estimation methods "FJC/kB" and "sat/B".
-The target is the fee expressed explicitly in the given form. Note that use of this feature
-will trigger BIP 125 (replace-by-fee) opt-in. (#11413)
-
-- In addition, the `estimate_mode` parameter is now case insensitive for all of
-  the above RPC commands. (#11413)
-
-- The `bumpfee` command now uses `conf_target` rather than `confTarget` in the
-  options. (#11413)
-
 - The `getpeerinfo` RPC no longer returns the `banscore` field unless the configuration
   option `-deprecatedrpc=banscore` is used. The `banscore` field will be fully
   removed in the next major release. (#19469)
@@ -160,6 +129,12 @@ will trigger BIP 125 (replace-by-fee) opt-in. (#11413)
   it is recommended to instead use the `connection_type` field (it will return
   `manual` when addnode is true). (#19725)
 
+- The `getpeerinfo` RPC no longer returns the `whitelisted` field by default. 
+  This field will be fully removed in the next major release. It can be accessed 
+  with the configuration option `-deprecatedrpc=getpeerinfo_whitelisted`. However, 
+  it is recommended to instead use the `permissions` field to understand if specific 
+  privileges have been granted to the peer. (#19770)
+
 - The `walletcreatefundedpsbt` RPC call will now fail with
   `Insufficient funds` when inputs are manually selected but are not enough to cover
   the outputs and fee. Additional inputs can automatically be added through the
@@ -175,7 +150,7 @@ New RPCs
 
 - The `getindexinfo` RPC returns the actively running indices of the node,
   including their current sync status and height. It also accepts an `index_name`
-  to specify returning only the status of that index. (#19550)
+  to specify returning the status of that index only. (#19550)
 
 Build System
 ------------
@@ -211,18 +186,23 @@ Changes to Wallet or GUI related settings can be found in the GUI or Wallet  sec
 Tools and Utilities
 -------------------
 
-- The `connections` field of `fujicoin-cli -getinfo` is expanded to return a JSON
-  object with `in`, `out` and `total` numbers of peer connections. It previously
-  returned a single integer value for the total number of peer connections. (#19405)
+- A new `fujicoin-cli -netinfo` command provides a network peer connections
+  dashboard that displays data from the `getpeerinfo` and `getnetworkinfo` RPCs
+  in a human-readable format. An optional integer argument from `0` to `4` may
+  be passed to see increasing levels of detail. (#19643)
 
 - A new `fujicoin-cli -generate` command, equivalent to RPC `generatenewaddress`
   followed by `generatetoaddress`, can generate blocks for command line testing
-  purposes. This is a client-side version of the
-  former `generate` RPC. See the help for details. (#19133)
+  purposes. This is a client-side version of the former `generate` RPC. See the
+  help for details. (#19133)
 
 - The `fujicoin-cli -getinfo` command now displays the wallet name and balance for
   each of the loaded wallets when more than one is loaded (e.g. in multiwallet
   mode) and a wallet is not specified with `-rpcwallet`. (#18594)
+
+- The `connections` field of `fujicoin-cli -getinfo` is now expanded to return a JSON
+  object with `in`, `out` and `total` numbers of peer connections. It previously
+  returned a single integer value for the total number of peer connections. (#19405)
 
 New settings
 ------------
@@ -273,10 +253,15 @@ Wallet
   methods remain backwards compatible. (#15937)
 
 - A new `send` RPC with similar syntax to `walletcreatefundedpsbt`, including
-  support for coin selection and a custom fee rate. The `send` RPC is
-  experimental and may change in subsequent releases. Using it is encouraged
-  once it's no longer experimental: `sendmany` and `sendtoaddress` may be
-  deprecated in a future release. (#16378)
+  support for coin selection and a custom fee rate, is added. The `send` RPC is
+  experimental and may change in subsequent releases. (#16378)
+
+- The `estimate_mode` parameter is now case-insensitive in the `bumpfee`,
+  `fundrawtransaction`, `sendmany`, `sendtoaddress`, `send` and
+  `walletcreatefundedpsbt` RPCs. (#11413)
+
+- The `bumpfee` RPC now uses `conf_target` rather than `confTarget` in the
+  options. (#11413)
 
 - `fundrawtransaction` and `walletcreatefundedpsbt` when used with the
   `lockUnspents` argument now lock manually selected coins, in addition to
@@ -303,13 +288,13 @@ new keys and addresses like previous releases did.
 
 New wallets can be created through the GUI (which has a more prominent create
 wallet option), through the `fujicoin-cli createwallet` or `fujicoin-wallet
-create` commands, or the `createwallet` RPC. (#15454)
+create` commands, or the `createwallet` RPC. (#15454, #20186)
 
 ### Experimental Descriptor Wallets
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/bitcoin/bitcoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/fujicoin/fujicoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
@@ -321,7 +306,7 @@ Descriptor Wallets also uses different semantics for watch-only things and impor
 
 As Descriptor Wallets are a new type of wallet, their introduction does not affect existing wallets.
 Users who already have a Fujicoin Core wallet can continue to use it as they did before without
-any change in behavior. Newly created Legacy Wallets (which is the default type of wallet) will
+any change in behavior. Newly created Legacy Wallets (which remains the default type of wallet) will
 behave as they did in previous versions of Fujicoin Core.
 
 The differences between Descriptor Wallets and Legacy Wallets are largely limited to non user facing
@@ -330,15 +315,13 @@ as described below.
 
 #### Creating Descriptor Wallets
 
-Descriptor Wallets are not created by default. They must be explicitly created using the
-`createwallet` RPC or via the GUI. A `descriptors` option has been added to `createwallet`.
-Setting `descriptors` to `true` will create a Descriptor Wallet instead of a Legacy Wallet.
+Descriptor wallets are not the default type of wallet.
 
 In the GUI, a checkbox has been added to the Create Wallet Dialog to indicate that a
-Descriptor Wallet should be created.
+Descriptor Wallet should be created. And a `descriptors` option has been added to `createwallet` RPC.
+Setting `descriptors` to `true` will create a Descriptor Wallet instead of a Legacy Wallet.
 
-Without those options being set, a Legacy Wallet will be created instead. Additionally the
-Default Wallet created upon first startup of Fujicoin Core will be a Legacy Wallet.
+Without those options being set, a Legacy Wallet will be created instead.
 
 #### `IsMine` Semantics
 
@@ -427,9 +410,31 @@ issue.
 
 - The `upgradewallet` RPC replaces the `-upgradewallet` command line option.
   (#15761)
+
 - The `settxfee` RPC will fail if the fee was set higher than the `-maxtxfee`
   command line setting. The wallet will already fail to create transactions
   with fees higher than `-maxtxfee`. (#18467)
+
+- A new `fee_rate` parameter/option denominated in satoshis per vbyte (sat/vB)
+  is introduced to the `sendtoaddress`, `sendmany`, `fundrawtransaction` and
+  `walletcreatefundedpsbt` RPCs as well as to the experimental new `send`
+  RPC. The legacy `feeRate` option in `fundrawtransaction` and
+  `walletcreatefundedpsbt` still exists for setting a fee rate in FJC per 1,000
+  vbytes (FJC/kvB), but it is expected to be deprecated soon to avoid
+  confusion. For these RPCs, the fee rate error message is updated from FJC/kB
+  to sat/vB and the help documentation in FJC/kB is updated to FJC/kvB. The
+  `send` and `sendtoaddress` RPC examples are updated to aid users in creating
+  transactions with explicit fee rates. (#20305, #11413)
+
+- The `bumpfee` RPC `fee_rate` option is changed from FJC/kvB to sat/vB and the
+  help documentation is updated. Users are warned that this is a breaking API
+  change, but it should be relatively benign: the large (100,000 times)
+  difference between FJC/kvB and sat/vB units means that a transaction with a
+  fee rate mistakenly calculated in FJC/kvB rather than sat/vB should raise an
+  error due to the fee rate being set too low. In the worst case, the
+  transaction may send at 1 sat/vB, but as Replace-by-Fee (BIP125 RBF) is active
+  by default when an explicit fee rate is used, the transaction fee can be
+  bumped. (#20305)
 
 GUI changes
 -----------
@@ -475,6 +480,9 @@ Tests
 - The BIP 325 default signet can be enabled by the `-chain=signet` or `-signet`
   setting. The settings `-signetchallenge` and `-signetseednode` allow
   enabling a custom signet.
+
+- The `generateblock` RPC allows testers using regtest mode to
+  generate blocks that consist of a custom set of transactions. (#17693)
 
 Credits
 =======
