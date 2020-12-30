@@ -25,6 +25,7 @@ FUJICOIN_GUI_NAME=fujicoin-qt
 FUJICOIN_CLI_NAME=fujicoin-cli
 FUJICOIN_TX_NAME=fujicoin-tx
 FUJICOIN_WALLET_TOOL_NAME=fujicoin-wallet
+FUJICOIN_UTIL_NAME=fujicoin-util
 
 dnl Unless the user specified ARFLAGS, force it to be cr
 AC_ARG_VAR(ARFLAGS, [Flags for the archiver, defaults to <cr> if not set])
@@ -554,7 +555,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build fujicoin-cli fujicoin-tx fujicoin-wallet (default=yes)])],
+  [build fujicoin-cli fujicoin-tx fujicoin-util fujicoin-wallet (default=yes)])],
   [build_fujicoin_utils=$withval],
   [build_fujicoin_utils=yes])
 
@@ -575,6 +576,12 @@ AC_ARG_ENABLE([util-wallet],
   [build fujicoin-wallet])],
   [build_fujicoin_wallet=$enableval],
   [build_fujicoin_wallet=$build_fujicoin_utils])
+
+AC_ARG_ENABLE([util-util],
+  [AS_HELP_STRING([--enable-util-util],
+  [build fujicoin-util])],
+  [build_fujicoin_util=$enableval],
+  [build_fujicoin_util=$build_fujicoin_utils])
 
 AC_ARG_WITH([libs],
   [AS_HELP_STRING([--with-libs],
@@ -1186,6 +1193,7 @@ if test "x$enable_fuzz" = "xyes"; then
   build_fujicoin_utils=no
   build_fujicoin_cli=no
   build_fujicoin_tx=no
+  build_fujicoin_util=no
   build_fujicoin_wallet=no
   build_fujicoind=no
   build_fujicoin_libs=no
@@ -1392,7 +1400,7 @@ fi
 dnl univalue check
 
 need_bundled_univalue=yes
-if test x$build_fujicoin_wallet$build_fujicoin_cli$build_fujicoin_tx$build_fujicoind$fujicoin_enable_qt$use_tests$use_bench = xnonononononono; then
+if test x$build_fujicoin_wallet$build_fujicoin_cli$build_fujicoin_tx$build_fujicoin_util$build_fujicoind$fujicoin_enable_qt$use_tests$use_bench = xnononononononono; then
   need_bundled_univalue=no
 else
   if test x$system_univalue != xno; then
@@ -1474,6 +1482,10 @@ AC_MSG_RESULT($build_fujicoin_tx)
 AC_MSG_CHECKING([whether to build fujicoin-wallet])
 AM_CONDITIONAL([BUILD_FUJICOIN_WALLET], [test x$build_fujicoin_wallet = xyes])
 AC_MSG_RESULT($build_fujicoin_wallet)
+
+AC_MSG_CHECKING([whether to build fujicoin-util])
+AM_CONDITIONAL([BUILD_FUJICOIN_UTIL], [test x$build_fujicoin_util = xyes])
+AC_MSG_RESULT($build_fujicoin_util)
 
 AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_FUJICOIN_LIBS], [test x$build_fujicoin_libs = xyes])
@@ -1647,6 +1659,7 @@ AC_SUBST(FUJICOIN_GUI_NAME)
 AC_SUBST(FUJICOIN_CLI_NAME)
 AC_SUBST(FUJICOIN_TX_NAME)
 AC_SUBST(FUJICOIN_WALLET_TOOL_NAME)
+AC_SUBST(FUJICOIN_UTIL_NAME)
 
 AC_SUBST(RELDFLAGS)
 AC_SUBST(DEBUG_CPPFLAGS)

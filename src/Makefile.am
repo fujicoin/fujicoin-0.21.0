@@ -101,6 +101,10 @@ if BUILD_FUJICOIN_WALLET
 endif
 endif
 
+if BUILD_FUJICOIN_UTIL
+  bin_PROGRAMS += fujicoin-util
+endif
+
 .PHONY: FORCE check-symbols check-security
 # fujicoin core #
 FUJICOIN_CORE_H = \
@@ -660,6 +664,27 @@ fujicoin_wallet_LDADD = $(LIBFUJICOIN_WALLET_TOOL) $(fujicoin_bin_ldadd)
 if TARGET_WINDOWS
 fujicoin_wallet_SOURCES += fujicoin-wallet-res.rc
 endif
+#
+
+# fujicoin-util binary #
+fujicoin_util_SOURCES = fujicoin-util.cpp
+fujicoin_util_CPPFLAGS = $(AM_CPPFLAGS) $(FUJICOIN_INCLUDES)
+fujicoin_util_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+fujicoin_util_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+
+if TARGET_WINDOWS
+fujicoin_util_SOURCES += fujicoin-util-res.rc
+endif
+
+fujicoin_util_LDADD = \
+  $(LIBUNIVALUE) \
+  $(LIBFUJICOIN_COMMON) \
+  $(LIBFUJICOIN_UTIL) \
+  $(LIBFUJICOIN_CONSENSUS) \
+  $(LIBFUJICOIN_CRYPTO) \
+  $(LIBSECP256K1)
+
+fujicoin_util_LDADD += $(BOOST_LIBS)
 #
 
 # fujicoinconsensus library #

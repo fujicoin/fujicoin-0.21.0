@@ -25,6 +25,7 @@ FUJICOIN_QT_BIN=$(top_builddir)/src/qt/$(FUJICOIN_GUI_NAME)$(EXEEXT)
 FUJICOIN_CLI_BIN=$(top_builddir)/src/$(FUJICOIN_CLI_NAME)$(EXEEXT)
 FUJICOIN_TX_BIN=$(top_builddir)/src/$(FUJICOIN_TX_NAME)$(EXEEXT)
 FUJICOIN_WALLET_BIN=$(top_builddir)/src/$(FUJICOIN_WALLET_TOOL_NAME)$(EXEEXT)
+FUJICOIN_UTIL_BIN=$(top_builddir)/src/$(FUJICOIN_UTIL_NAME)$(EXEEXT)
 FUJICOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win64-setup$(EXEEXT)
 
 empty :=
@@ -80,6 +81,7 @@ $(FUJICOIN_WIN_INSTALLER): all-recursive
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(FUJICOIN_CLI_BIN) $(top_builddir)/release
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(FUJICOIN_TX_BIN) $(top_builddir)/release
 	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(FUJICOIN_WALLET_BIN) $(top_builddir)/release
+	STRIPPROG="$(STRIP)" $(INSTALL_STRIP_PROGRAM) $(FUJICOIN_UTIL_BIN) $(top_builddir)/release
 	@test -f $(MAKENSIS) && echo 'OutFile "$@"' | cat $(top_builddir)/share/setup.nsi - | $(MAKENSIS) -V2 - || \
 	  echo error: could not build $@
 	@echo built $@
@@ -177,6 +179,9 @@ $(FUJICOIN_TX_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
 $(FUJICOIN_WALLET_BIN): FORCE
+	$(MAKE) -C src $(@F)
+
+$(FUJICOIN_UTIL_BIN): FORCE
 	$(MAKE) -C src $(@F)
 
 if USE_LCOV
