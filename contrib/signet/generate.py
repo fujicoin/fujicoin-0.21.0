@@ -26,12 +26,12 @@ from test_framework.blocktools import WITNESS_COMMITMENT_HEADER, script_BIP34_co
 from test_framework.messages import CBlock, CBlockHeader, COutPoint, CTransaction, CTxIn, CTxInWitness, CTxOut, FromHex, ToHex, deser_string, hash256, ser_compact_size, ser_string, ser_uint256, uint256_from_str # noqa: E402
 from test_framework.script import CScriptOp # noqa: E402
 
-logging.basicConfig(
+logging.basicConfig(filename='./generate.log',
     format='%(asctime)s %(levelname)s %(message)s',
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 
-SIGNET_HEADER = b"\x2f\x70\x46\xb0"
+SIGNET_HEADER = b"\xec\xc7\xda\xa2"
 PSBT_SIGNET_BLOCK = b"\xfc\x06signetb"    # proprietary PSBT global field holding the block being signed
 RE_MULTIMINER = re.compile("^(\d+)(-(\d+))?/(\d+)$")
 
@@ -105,12 +105,19 @@ class PSBT:
         tx = FromBinary(CTransaction, self.g.map[0])
         assert len(tx.vin) == len(self.i)
         assert len(tx.vout) == len(self.o)
-
-        psbt = [x.serialize() for x in [self.g] + self.i + self.o]
+        
+        selfg = [x.serialize() for x in [self.g]]
+        selfi = [x.serialize() for x in self.i]
+        selfo = [x.serialize() for x in self.o]
+        psbt = selfg + selfi + selfo
+        
+        #print("self.g:", selfg)
+        #print("self.i:", selfi)
+        #print("self.o:", selfo)
+        #print("self.o:", psbt)
+        #print("serialize:", b"psbt\xff" + b"".join(psbt))
+        
         return b"psbt\xff" + b"".join(psbt)
-
-    def to_base64(self):
-        return base64.b64encode(self.serialize()).decode("utf8")
 
     @classmethod
     def from_base64(cls, b64psbt):
@@ -171,7 +178,15 @@ def do_createpsbt(block, signme, spendme):
                          3: bytes([1,0,0,0])})
              ]
     psbt.o = [ PSBTMap() ]
-    return psbt.to_base64()
+    
+    psbts = psbt.serialize()
+    psbt64enc = base64.b64encode(psbts)
+    
+    #print("psbt:", psbts)
+    #print("b64encode:", psbt64enc)
+    #print("do_createpsb:", psbt64enc.decode())
+    
+    return psbt64enc.decode()
 
 def do_decode_psbt(b64psbt):
     psbt = PSBT.from_base64(b64psbt)
@@ -200,7 +215,7 @@ def finish_block(block, signet_solution, grind_cmd):
         block.rehash()
     return block
 
-def generate_psbt(tmpl, reward_spk, *, blocktime=None):
+def generate_psbt(tmpl, reward_spk, blocktime=None):
     signet_spk = tmpl["signet_challenge"]
     signet_spk_bin = unhexlify(signet_spk)
 
@@ -360,25 +375,8 @@ def do_generate(args):
     else:
         max_blocks = 1
 
-    if args.set_block_time is not None and max_blocks != 1:
-        logging.error("Cannot specify --ongoing or --max-blocks > 1 when using --set-block-time")
-        return 1
-    if args.set_block_time is not None and args.set_block_time < 0:
-        args.set_block_time = time.time()
-        logging.info("Treating negative block time as current time (%d)" % (args.set_block_time))
-
-    if args.min_nbits:
-        if args.nbits is not None:
-            logging.error("Cannot specify --nbits and --min-nbits")
-            return 1
-        args.nbits = "1e0377ae"
-        logging.info("Using nbits=%s" % (args.nbits))
-
-    if args.set_block_time is None:
-        if args.nbits is None or len(args.nbits) != 8:
-            logging.error("Must specify --nbits (use calibrate command to determine value)")
-            return 1
-
+    args.set_block_time = time.time()
+    
     if args.multiminer is None:
        my_blocks = (0,1,1)
     else:
@@ -397,8 +395,6 @@ def do_generate(args):
             logging.error("Inconsistent values for --multiminer")
             return 1
         my_blocks = (start-1, stop, total)
-
-    ultimate_target = nbits_to_target(int(args.nbits,16))
 
     mined_blocks = 0
     bestheader = {"hash": None}
@@ -483,7 +479,11 @@ def do_generate(args):
             if mine_time > now:
                 logging.error("GBT mintime is in the future: %d is %d seconds later than %d", mine_time, (mine_time-now), now)
                 return 1
-
+            
+        args.nbits = tmpl['bits']
+        ultimate_target = nbits_to_target(int(args.nbits,16))
+        tmpl["signet_challenge"] = "2f7046b0"
+        
         # address for reward
         reward_addr, reward_spk = get_reward_addr_spk(args, tmpl["height"])
 
@@ -491,8 +491,8 @@ def do_generate(args):
         logging.debug("Mining block delta=%s start=%s mine=%s", seconds_to_hms(mine_time-bestheader["time"]), mine_time, is_mine)
         mined_blocks += 1
         psbt = generate_psbt(tmpl, reward_spk, blocktime=mine_time)
-        psbt_signed = json.loads(args.bcli("-stdin", "walletprocesspsbt", input=psbt.encode('utf8')))
-        if not psbt_signed.get("complete",False):
+        psbt_signed = json.loads(args.bcli("walletprocesspsbt", psbt))
+        if not psbt_signed.get("complete", False):
             logging.debug("Generated PSBT: %s" % (psbt,))
             sys.stderr.write("PSBT signing failed")
             return 1
@@ -500,7 +500,7 @@ def do_generate(args):
         block = finish_block(block, signet_solution, args.grind_cmd)
 
         # submit block
-        r = args.bcli("-stdin", "submitblock", input=ToHex(block).encode('utf8'))
+        r = args.bcli("submitblock", input=ToHex(block).encode('utf8'))
 
         # report
         bstr = "block" if is_mine else "backup block"
@@ -635,6 +635,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
 
