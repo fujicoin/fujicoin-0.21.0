@@ -31,7 +31,7 @@ logging.basicConfig(
     level=logging.INFO,
     datefmt='%Y-%m-%d %H:%M:%S')
 
-SIGNET_HEADER = b"\xec\xc7\xda\xa2"
+SIGNET_HEADER = b"\x2f\x70\x46\xb0"
 PSBT_SIGNET_BLOCK = b"\xfc\x06signetb"    # proprietary PSBT global field holding the block being signed
 RE_MULTIMINER = re.compile("^(\d+)(-(\d+))?/(\d+)$")
 
@@ -323,7 +323,7 @@ def next_block_delta(last_nbits, last_hash, ultimate_target, do_poisson):
     #  4) if doing poisson, use the last hash to pick a uniformly random number in [0,1), and work out a random multiplier to vary the average by
     #  5) cap the resulting interval between 1 second and 1 hour to avoid extremes
 
-    INTERVAL = 600.0*2016/2015 # 10 minutes, adjusted for the off-by-one bug
+    INTERVAL = 60.0*2016/2015 # 1 minutes, adjusted for the off-by-one bug
 
     current_target = nbits_to_target(last_nbits)
     retarget_factor = ultimate_target / current_target
@@ -371,7 +371,7 @@ def do_generate(args):
         if args.nbits is not None:
             logging.error("Cannot specify --nbits and --min-nbits")
             return 1
-        args.nbits = "1e0377ae"
+        args.nbits = "1e0ffff0"
         logging.info("Using nbits=%s" % (args.nbits))
 
     if args.set_block_time is None:
@@ -483,7 +483,7 @@ def do_generate(args):
             if mine_time > now:
                 logging.error("GBT mintime is in the future: %d is %d seconds later than %d", mine_time, (mine_time-now), now)
                 return 1
-
+            
         # address for reward
         reward_addr, reward_spk = get_reward_addr_spk(args, tmpl["height"])
 
@@ -524,8 +524,7 @@ def do_calibrate(args):
         return 1
 
     TRIALS = 600 # gets variance down pretty low
-    TRIAL_BITS = 0x1e3ea75f # takes about 5m to do 600 trials
-    #TRIAL_BITS = 0x1e7ea75f # XXX
+    TRIAL_BITS = 0x1e0fff0 # takes about ?m to do 600 trials
 
     header = CBlockHeader()
     header.nBits = TRIAL_BITS
@@ -555,7 +554,7 @@ def do_calibrate(args):
         want_targ = nbits_to_target(int(args.nbits,16))
         want_time = avg*targ/want_targ
     else:
-        want_time = args.seconds if args.seconds is not None else 25
+        want_time = args.seconds if args.seconds is not None else 10
         want_targ = int(targ*(avg/want_time))
 
     print("nbits=%08x for %ds average mining time" % (target_to_nbits(want_targ), want_time))

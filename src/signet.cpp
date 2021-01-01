@@ -23,7 +23,7 @@
 #include <util/system.h>
 #include <uint256.h>
 
-static constexpr uint8_t SIGNET_HEADER[4] = {0xec, 0xc7, 0xda, 0xa2};
+static constexpr uint8_t SIGNET_HEADER[4] = {0x2f, 0x70, 0x46, 0xb0};
 
 static constexpr unsigned int BLOCK_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_WITNESS | SCRIPT_VERIFY_DERSIG | SCRIPT_VERIFY_NULLDUMMY;
 
