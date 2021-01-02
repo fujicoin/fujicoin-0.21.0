@@ -28,6 +28,12 @@ How to Build
 
 [WINDOWS BUILD](./doc/build-windows.md)
 
+Signet network
+--------------
+Please refer to the following page for how to set up your own Signet network.
+
+[Signet Network](.doc/signet.md)
+
 License
 -------
 
