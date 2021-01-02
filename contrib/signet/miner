@@ -154,13 +154,13 @@ def signet_txs(block, challenge):
     to_spend.vout = [CTxOut(0, challenge)]
     to_spend.rehash()
 
-    spend = CTransaction()
-    spend.nVersion = 0
-    spend.nLockTime = 0
-    spend.vin = [CTxIn(COutPoint(to_spend.sha256, 0), b"", 0)]
-    spend.vout = [CTxOut(0, b"\x6a")]
+    to_sign = CTransaction()
+    to_sign.nVersion = 0
+    to_sign.nLockTime = 0
+    to_sign.vin = [CTxIn(COutPoint(to_spend.sha256, 0), b"", 0)]
+    to_sign.vout = [CTxOut(0, b"\x6a")]
 
-    return spend, to_spend
+    return to_sign, to_spend
 
 def do_createpsbt(block, signme, spendme):
     psbt = PSBT()
