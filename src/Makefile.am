@@ -771,10 +771,10 @@ if GLIBC_BACK_COMPAT
 endif
 
 check-security: $(bin_PROGRAMS)
-if HARDEN
-	@echo "Checking binary security..."
-	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) OTOOL=$(OTOOL) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py $(bin_PROGRAMS)
-endif
+#if HARDEN
+#	@echo "Checking binary security..."
+#	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) OTOOL=$(OTOOL) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py $(bin_PROGRAMS)
+#endif
 
 if EMBEDDED_LEVELDB
 include Makefile.crc32c.include
