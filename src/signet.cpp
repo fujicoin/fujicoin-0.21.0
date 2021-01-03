@@ -7,7 +7,7 @@
 #include <array>
 #include <cstdint>
 #include <vector>
-
+#include <chainparams.h>
 #include <consensus/merkle.h>
 #include <consensus/params.h>
 #include <consensus/validation.h>
@@ -22,8 +22,6 @@
 #include <util/strencodings.h>
 #include <util/system.h>
 #include <uint256.h>
-
-static constexpr uint8_t SIGNET_HEADER[4] = {0x2f, 0x70, 0x46, 0xb0};
 
 static constexpr unsigned int BLOCK_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH | SCRIPT_VERIFY_WITNESS | SCRIPT_VERIFY_DERSIG | SCRIPT_VERIFY_NULLDUMMY;
 
@@ -67,6 +65,18 @@ static uint256 ComputeModifiedMerkleRoot(const CMutableTransaction& cb, const CB
 
 Optional<SignetTxs> SignetTxs::Create(const CBlock& block, const CScript& challenge)
 {
+    unsigned char signet_header[4];
+    CHashWriter h(SER_DISK, 0);
+    h << challenge;
+    uint256 hash = h.GetHash();
+    memcpy(signet_header, hash.begin(), 4);
+    unsigned char SIGNET_HEADER[4] = {
+        signet_header[0],
+        signet_header[1],
+        signet_header[2],
+        signet_header[3]
+    };
+
     CMutableTransaction tx_to_spend;
     tx_to_spend.nVersion = 0;
     tx_to_spend.nLockTime = 0;
