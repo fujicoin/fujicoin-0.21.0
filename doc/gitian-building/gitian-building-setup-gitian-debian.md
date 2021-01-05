@@ -14,11 +14,10 @@ We assume that a user `gitianuser` was previously added.
 First we need to set up dependencies. Execute the following as root:
 
 ```
-apt-get install git ruby apt-cacher-ng qemu-utils debootstrap python-cheetah parted kpartx bridge-utils make curl firewalld
+apt-get install ruby git make wget curl apt-cacher-ng debootstrap bridge-utils
 brctl addbr br0
 ip addr add 10.0.3.1/24 broadcast 10.0.3.255 dev br0
 ip link set br0 up
-firewall-cmd --zone=trusted --add-interface=br0
 ip address show
 apt-get install lxc
 ip address show
@@ -38,7 +37,6 @@ Make new file: /etc/rc.local
 brctl addbr br0
 ip addr add 10.0.3.1/24 broadcast 10.0.3.255 dev br0
 ip link set br0 up
-firewall-cmd --zone=trusted --add-interface=br0
 exit 0
 ```
 Then `chmod +x /etc/rc.local`
@@ -79,7 +77,6 @@ brctl delbr br0
 brctl addbr br0
 ip addr add 10.0.3.1/24 broadcast 10.0.3.255 dev br0
 ip link set br0 up
-firewall-cmd --zone=trusted --add-interface=br0
 ip address show
 ```
 
