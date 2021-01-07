@@ -371,7 +371,7 @@ def do_generate(args):
         if args.nbits is not None:
             logging.error("Cannot specify --nbits and --min-nbits")
             return 1
-        args.nbits = "1e0ffff0"
+        args.nbits = "1f0fffff"
         logging.info("Using nbits=%s" % (args.nbits))
 
     if args.set_block_time is None:
@@ -510,7 +510,7 @@ def do_generate(args):
         next_is_mine = next_block_is_mine(block.hash, my_blocks)
 
         logging.debug("Block hash %s payout to %s", block.hash, reward_addr)
-        logging.info("Mined %s at height %d; next in %s (%s)", bstr, tmpl["height"], seconds_to_hms(next_delta), ("mine" if next_is_mine else "backup"))
+        logging.info("Mined %s at height %d; bits %s; next in %s (%s)", bstr, tmpl["height"], tmpl["bits"], seconds_to_hms(next_delta), ("mine" if next_is_mine else "backup"))
         if r != "":
             logging.warning("submitblock returned %s for height %d hash %s", r, tmpl["height"], block.hash)
         lastheader = block.hash
@@ -523,8 +523,9 @@ def do_calibrate(args):
         sys.stderr.write("Must specify 8 hex digits for --nbits")
         return 1
 
-    TRIALS = 600 # gets variance down pretty low
-    TRIAL_BITS = 0x1e0fff0 # takes about ?m to do 600 trials
+    #TRIALS = 600 # gets variance down pretty low
+    TRIALS = 100
+    TRIAL_BITS = 0x1f0ffff # takes about ?m to do 600 trials
 
     header = CBlockHeader()
     header.nBits = TRIAL_BITS
@@ -533,12 +534,13 @@ def do_calibrate(args):
     start = time.time()
     count = 0
     #CHECKS=[]
+    header.nNonce = 0
     for i in range(TRIALS):
-        header.nTime = i
-        header.nNonce = 0
+        header.nTime = int(time.time())
         headhex = header.serialize().hex()
         cmd = args.grind_cmd.split(" ") + [headhex]
         newheadhex = subprocess.run(cmd, stdout=subprocess.PIPE, input=b"", check=True).stdout.strip()
+        header.nNonce = newhead.nNonce +1
         #newhead = FromHex(CBlockHeader(), newheadhex.decode('utf8'))
         #count += newhead.nNonce
         #if (i+1) % 100 == 0:
@@ -552,11 +554,11 @@ def do_calibrate(args):
 
     if args.nbits is not None:
         want_targ = nbits_to_target(int(args.nbits,16))
-        want_time = avg*targ/want_targ
+        want_time = avg * targ/want_targ
     else:
         want_time = args.seconds if args.seconds is not None else 10
         want_targ = int(targ*(avg/want_time))
-
+    print("bits=%08x for %ds average mining time" % (TRIAL_BITS, avg))
     print("nbits=%08x for %ds average mining time" % (target_to_nbits(want_targ), want_time))
     return 0
 
