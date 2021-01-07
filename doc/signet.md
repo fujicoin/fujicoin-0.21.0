@@ -73,18 +73,18 @@ To mine the first block in your custom chain, you can run:
     MINER="python3 miner.py"
     GRIND="./fujicoin-util grind"
     ADDR="W4FVbSKsCyRcMPm8pAsdSsgSAtiXAyfovj"  # Note: Use legacy address
-    $MINER --cli="$CLI" generate --grind-cmd="$GRIND" --address="$ADDR" --set-block-time=-1 --nbits=1e00f403
 
-This will mine a block with the current timestamp. If you want to backdate the chain, you can give a different timestamp to --set-block-time.
+To mining block number 1, execute the following command. 
+This will mine a block with the current timestamp. 
+If you want to backdate the chain, you can give a different timestamp to --set-block-time. 
+A UnixTime 12 hours ago is recommended.
 
-You will then need to pick a difficulty target. Since signet chains are primarily protected by a signature rather than proof of work, there is no need to spend as much energy as possible mining, however you may wish to choose to spend more time than the absolute minimum. The calibrate subcommand can be used to pick a target, eg:
+    $MINER --cli="$CLI" generate --grind-cmd="$GRIND" --address="$ADDR" --set-block-time=-1 --nbits=1f0fffff
 
-    $MINER calibrate --grind-cmd="$GRIND"
-    nbits=1e00f403 for 3m average mining time
 
-It defaults to estimating an nbits value resulting in 3m average time to find a block, but the --seconds parameter can be used to pick a different target, or the --nbits parameter can be used to estimate how long it will take for a given difficulty.
+Using the --ongoing parameter will then cause the signet miner to create blocks indefinitely. 
+It will pick the time between blocks so that difficulty is adjusted to match the provided --nbits value. 
+Setting nbits to 1f0fffff will create blocks every minute.
 
-Using the --ongoing parameter will then cause the signet miner to create blocks indefinitely. It will pick the time between blocks so that difficulty is adjusted to match the provided --nbits value.
-
-    $MINER --cli="$CLI" generate --grind-cmd="$GRIND" --address="$ADDR" --nbits=1e00f403 --ongoing
+    $MINER --cli="$CLI" generate --grind-cmd="$GRIND" --address="$ADDR" --nbits=1f0fffff --ongoing
 
