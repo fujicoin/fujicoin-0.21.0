@@ -1,5 +1,5 @@
-v0.21.0 Release Notes
-===============================
+0.21.0 Release Notes
+====================
 
 Fujicoin Core version v0.21.0 is now available from:
 
@@ -67,6 +67,14 @@ P2P and network changes
   be enabled using the command line option `-whitelist=relay@127.0.0.1`.
   (#19988)
 
+- This release adds support for Tor version 3 hidden services, and rumoring them
+  over the network to other peers using
+  [BIP155](https://github.com/bitcoin/bips/blob/master/bip-0155.mediawiki).
+  Version 2 hidden services are still fully supported by Fujicoin Core, but the
+  Tor network will start
+  [deprecating](https://blog.torproject.org/v2-deprecation-timeline) them in the
+  coming months. (#19954)
+
 - The Tor onion service that is automatically created by setting the
   `-listenonion` configuration parameter will now be created as a Tor v3 service
   instead of Tor v2. The private key that was used for Tor v2 (if any) will be
@@ -74,9 +82,40 @@ P2P and network changes
   `-datadir`) and can be removed if not needed. Fujicoin Core will no longer
   attempt to read it. The private key for the Tor v3 service will be saved in a
   file named `onion_v3_private_key`. To use the deprecated Tor v2 service (not
-  recommended), then `onion_private_key` can be copied over
+  recommended), the `onion_private_key` can be copied over
   `onion_v3_private_key`, e.g.
   `cp -f onion_private_key onion_v3_private_key`. (#19954)
+
+- The client writes a file (`anchors.dat`) at shutdown with the network addresses
+  of the node’s two outbound block-relay-only peers (so called "anchors"). The
+  next time the node starts, it reads this file and attempts to reconnect to those
+  same two peers. This prevents an attacker from using node restarts to trigger a
+  complete change in peers, which would be something they could use as part of an
+  eclipse attack. (#17428)
+
+- This release adds support for serving
+  [BIP157](https://github.com/bitcoin/bips/blob/master/bip-0157.mediawiki) compact
+  filters to peers on the network when enabled using
+  `-blockfilterindex=1 -peercfilters=1`. (#16442)
+
+- This release adds support for signets
+  ([BIP325](https://github.com/bitcoin/bips/blob/master/bip-0325.mediawiki)) in
+  addition to the existing mainnet, testnet, and regtest networks. Signets are
+  centrally-controlled test networks, allowing them to be more predictable
+  test environments than the older testnet. One public signet is maintained, and
+  selectable using `-signet`. It is also possible to create personal signets.
+  (#18267).
+
+- This release implements
+  [BIP339](https://github.com/bitcoin/bips/blob/master/bip-0339.mediawiki)
+  wtxid relay. When negotiated, transactions are announced using their wtxid
+  instead of their txid. (#18044).
+
+- This release implements the proposed Taproot consensus rules
+  ([BIP341](https://github.com/bitcoin/bips/blob/master/bip-0341.mediawiki) and
+  [BIP342](https://github.com/bitcoin/bips/blob/master/bip-0342.mediawiki)),
+  without activation on mainnet. Experimentation with Taproot can be done on
+  signet, where its rules are already active. (#19553)
 
 Updated RPCs
 ------------
@@ -97,7 +136,7 @@ Updated RPCs
   integers instead of signed 32-bit integers. This matches their treatment in
   consensus logic. Versions greater than 2 continue to be non-standard
   (matching previous behavior of smaller than 1 or greater than 2 being
-  non-standard). Note that this includes the joinpsbt command, which combines
+  non-standard). Note that this includes the `joinpsbt` command, which combines
   partially-signed transactions by selecting the highest version number.
   (#16525)
 
@@ -181,7 +220,9 @@ Updated settings
   according to RFC 4632. Netmasks are used in the `-rpcallowip` and `-whitelist`
   configuration options and in the `setban` RPC. (#19628)
 
-Changes to Wallet or GUI related settings can be found in the GUI or Wallet  section below.
+- The `-blocksonly` setting now completely disables fee estimation. (#18766)
+
+Changes to Wallet or GUI related settings can be found in the GUI or Wallet section below.
 
 Tools and Utilities
 -------------------
@@ -270,8 +311,9 @@ Wallet
 
 - The `-zapwallettxes` startup option has been removed and its functionality
   removed from the wallet.  This option was originally intended to allow for
-  the fee bumping of transactions that did not signal RBF. This functionality
-  has been superseded with the abandon transaction feature. (#19671)
+  rescuing wallets which were affected by a malleability attack. More recently,
+  it has been used in the fee bumping of transactions that did not signal RBF.
+  This functionality has been superseded with the abandon transaction feature. (#19671)
 
 - The error code when no wallet is loaded, but a wallet RPC is called, has been
   changed from `-32601` (method not found) to `-18` (wallet not found).
@@ -297,8 +339,8 @@ is available. Additionally there may be some bugs and current functions may chan
 Bugs and missing functionality can be reported to the [issue tracker](https://github.com/fujicoin/fujicoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
-scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet
-structure where keys are used to generate scriptPubKeys and addresses. Because of this
+scriptPubKey information using output descriptors. This is in contrast to the Legacy Wallet
+structure where keys are used to implicitly generate scriptPubKeys and addresses. Because of this
 shift to being script based instead of key based, many of the confusing things that Legacy
 Wallets do are not possible with Descriptor Wallets. Descriptor Wallets use a definition
 of "mine" for scripts which is simpler and more intuitive than that used by Legacy Wallets.
@@ -337,7 +379,7 @@ what scripts the wallet will consider to belong to it. Additionally the implemen
 in Descriptor Wallets is far simpler than for Legacy Wallets. Notably, in Legacy Wallets, `IsMine`
 allowed for users to take one type of address (e.g. P2PKH), mutate it into another address type
 (e.g. P2WPKH), and the wallet would still detect outputs sending to the new address type
-even without that address being requested from the wallet. Descriptor Wallets does not
+even without that address being requested from the wallet. Descriptor Wallets do not
 allow for this and will only watch for the addresses that were explicitly requested from the wallet.
 
 These changes to `IsMine` will make it easier to reason about what scripts the wallet will
@@ -365,15 +407,15 @@ New export RPCs for Descriptor Wallets have not yet been added.
 
 The following RPCs are disabled for Descriptor Wallets:
 
-* importprivkey
-* importpubkey
-* importaddress
-* importwallet
-* dumpprivkey
-* dumpwallet
-* importmulti
-* addmultisigaddress
-* sethdseed
+* `importprivkey`
+* `importpubkey`
+* `importaddress`
+* `importwallet`
+* `dumpprivkey`
+* `dumpwallet`
+* `importmulti`
+* `addmultisigaddress`
+* `sethdseed`
 
 #### Watchonly Wallets
 
@@ -393,7 +435,7 @@ workflow but the typical GUI Send, `sendtoaddress`, etc. workflows would still b
 non-functional.
 
 This issue is worsened if the wallet contains both single key (e.g. `wpkh(...)`) descriptors and such
-multiple key descriptors as some transactions could be signed and broadast and others not. This is
+multiple key descriptors as some transactions could be signed and broadcast and others not. This is
 due to some transactions containing only single key inputs, while others would contain both single
 key and multiple key inputs, depending on which are available and how the coin selection algorithm
 selects inputs. However this is not considered to be a supported use case; multisigs
@@ -405,6 +447,12 @@ descriptors with private keys for now as explained earlier.
 The change to using descriptors changes the default derivation paths used by Fujicoin Core
 to adhere to BIP 44/49/84. Descriptors with different derivation paths can be imported without
 issue.
+
+#### SQLite Database Backend
+
+Descriptor wallets use SQLite for the wallet file instead of the Berkeley DB used in legacy wallets.
+This will break compatibility with any existing tooling that operates on wallets, however compatibility
+was already being broken by the move to descriptors.
 
 ### Wallet RPC changes
 
@@ -483,12 +531,3 @@ Tests
 
 - The `generateblock` RPC allows testers using regtest mode to
   generate blocks that consist of a custom set of transactions. (#17693)
-
-Credits
-=======
-
-Thanks to everyone who directly contributed to this release:
-
-
-As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
